@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    whitelisted = params.require(:user).permit(:email)
-    @user = User.new(whitelisted)
+    @user = User.new(user_params)
 
     if @user.save
       redirect_to user_path(@user)
@@ -21,6 +20,22 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email)
   end
 
 end
