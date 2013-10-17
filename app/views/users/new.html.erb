@@ -6,12 +6,6 @@
   <% end %>
 <% end %>
 
-<!-- <form action="/users" method="post">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <input type="email" name="user[email]" />
-  <button>Sign up!</button>
-</form> -->
-
 <%= form_for @user, :method => :post, :action => users_path do |f| %>
   <%= f.label :email %>
   <%= f.email_field :email %>
