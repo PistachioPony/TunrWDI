@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017145926) do
+ActiveRecord::Schema.define(version: 20131017150357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,5 +21,16 @@ ActiveRecord::Schema.define(version: 20131017145926) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "songs", force: true do |t|
+    t.string   "name",                       null: false
+    t.string   "spotify_uri",                null: false
+    t.integer  "artist_id",                  null: false
+    t.decimal  "price",       default: 0.99, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "songs", ["artist_id"], name: "index_songs_on_artist_id", using: :btree
 
 end
