@@ -1,4 +1,11 @@
 <h1>Sign up</h1>
+
+<% unless @user.nil? %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
 <form action="/users" method="post">
   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
   <input type="email" name="user[email]" />
