@@ -1,8 +1,2 @@
 <h1>Editing <%= @user.email %></h1>
-
-<%= form_for @user, :method => :post, :action => users_path do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>
