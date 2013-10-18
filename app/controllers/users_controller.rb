@@ -20,6 +20,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @logged_in = logged_in?
+
+    if @logged_in
+      render :edit
+    else
+      redirect_to new_session_path
+    end
   end
 
   def update
@@ -46,6 +53,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def logged_in?
+    session[:user_id].present?
   end
 
 end
