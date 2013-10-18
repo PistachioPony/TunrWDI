@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  before_action :set_user, except: [:new, :create]
+  before_action :authenticated!, except: [:new, :create]
+
   def new
     @user = User.new
     render :new
@@ -15,23 +19,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    
   end
 
   def edit
-    @user = User.find(params[:id])
-    @logged_in = logged_in?
-
-    if @logged_in
-      render :edit
-    else
-      redirect_to new_session_path
-    end
+    
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update_attributes(user_params)
       redirect_to user_path(@user)
     else
@@ -40,8 +35,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-
     if @user.destroy
       redirect_to new_user_path
     else
@@ -57,6 +50,16 @@ class UsersController < ApplicationController
 
   def logged_in?
     session[:user_id].present?
+  end
+
+  def authenticated!
+    unless logged_in?
+      redirect_to new_session_path
+    end
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
