@@ -3,4 +3,8 @@
 
 <iframe src="https://embed.spotify.com/?uri=<%= @song.spotify_uri %>" width="300" height="380" framborder="0" allowtransparency="true"></iframe>
 
+<% if logged_in? %>
+  <%= link_to 'Purchase', purchase_song_path(@song), :method => :post %>
+<% end %>
+
 <%= link_to "Back", artist_path(@song.artist) %>

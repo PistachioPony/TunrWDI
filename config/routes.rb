@@ -1,6 +1,10 @@
 Tunr::Application.routes.draw do
   resources :artists, only: [:index, :show]
-  resources :songs, only: [:show]
+  resources :songs, only: [:show] do
+    member do
+      post 'purchase'
+    end
+  end
 
   resources :users, except: [:index]
 
