@@ -10,7 +10,6 @@
   <nav>
     <% if logged_in? %>
       <ul>
-        
         <li><%= link_to 'Logout', session_path, :method => :delete %></li>
       </ul>
     <% end %>
