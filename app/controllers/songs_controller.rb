@@ -7,7 +7,7 @@ class SongsController < ApplicationController
 
   def purchase
     @song = Song.find(params[:id])
-    binding.pry
+    
     # current_user.purchase(@song)
   end
 end
