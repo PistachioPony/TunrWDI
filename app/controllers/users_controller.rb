@@ -45,10 +45,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def logged_in?
-    session[:user_id].present?
-  end
-
   def authenticated!
     unless logged_in?
       redirect_to new_session_path
