@@ -45,12 +45,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def authenticated!
-    unless logged_in?
-      redirect_to new_session_path
-    end
-  end
-
   def set_user
     @user = User.find(params[:id])
   end
